@@ -1,0 +1,34 @@
+# Claude Code configuration
+# You can commit .claude/ directory, but you may want to ignore specific files
+# that contain sensitive data (API keys, personal settings, etc.)
+# For now, we're committing settings.local.json as it only contains project config
+
+# Ignore memory files if they contain personal/sensitive information
+.claude/memory/**
+!.claude/memory/.gitkeep
+
+# Common system files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+
+# Compressed skill packages (build artifacts)
+*.skill
+
+# Node modules if you add any JavaScript tooling
+node_modules/
+
+# Python virtual environments if you add Python tooling
+venv/
+__pycache__/
+*.pyc
