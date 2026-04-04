@@ -6,7 +6,7 @@ A curated collection of custom skills for Claude Code and other AI agents, cover
 
 | Category | Skills | Purpose |
 |----------|--------|---------|
-| **🌐 Web Tools** | web-tool-selector | Choose the right web automation tool (Firecrawl/Playwright) |
+| **🌐 Web Tools** | web-tool-selector | Choose between 5 web tools + run audits for performance, SEO, paid traffic and a11y |
 | **🎯 Content Optimization** | geo-content-reviewer | Audit and optimize content for AI citation (ChatGPT, Claude, Perplexity, Google AI) |
 | **📄 Documents & Resumes** | resume-format, resume-tailor | Professional resume formatting and job-specific tailoring |
 
@@ -16,20 +16,30 @@ A curated collection of custom skills for Claude Code and other AI agents, cover
 
 #### [web-tool-selector](./skills/web-tool-selector/)
 
-**Decision framework for choosing the right web automation tool**
+**Decision framework for choosing the right web tool + page quality audits**
 
-Helps you select between Firecrawl MCP, Playwright CLI, and Playwright MCP based on your specific use case, optimizing for token efficiency and functionality.
+Helps you select between 5 tools — Chrome DevTools MCP, Firecrawl MCP, Firecrawl CLI, Playwright CLI, and Playwright MCP — and runs structured audits to protect your organic traffic, paid traffic, and page quality scores.
 
 **When to use:**
 - Any task involving web scraping, browser automation, or web testing
 - When deciding which tool to use for a web-related task
+- Running Lighthouse or Core Web Vitals audits
+- Verifying tracking pixels (GA4, GTM, Meta Pixel) and conversion flows
+- Auditing SEO on-page tags (title, canonical, OG, structured data)
+- Checking if a page will harm paid traffic (Quality Score, LCP on mobile)
 - QA/Testing workflows requiring hybrid approaches
 
 **Key features:**
-- Comparison matrix: Firecrawl MCP (fastest, cheapest) vs Playwright CLI (~27K tokens/task) vs Playwright MCP (~114K tokens/task)
-- Token cost analysis (4x difference between tools!)
-- Recommended workflows for different scenarios
-- Hybrid automation strategies
+- **5-tool decision tree**: Chrome DevTools MCP → Firecrawl MCP → Firecrawl CLI → Playwright CLI → Playwright MCP
+- **Token cost analysis**: Firecrawl (API credits) vs Playwright CLI (~27K tokens) vs Playwright MCP (~114K tokens)
+- **Audit Mode** with 4 specialized workflows:
+  - Performance & Core Web Vitals (LCP subpart breakdown, render-blocking detection)
+  - SEO / Organic Traffic (meta tags, canonical, structured data, broken links)
+  - Paid Traffic Health (pixel verification, UTM preservation, Quality Score signals)
+  - Accessibility / WCAG (Lighthouse a11y score, keyboard nav, contrast)
+- **Score thresholds reference**: CWV (LCP/INP/CLS) + Lighthouse scoring scale
+- **Hybrid workflows**: Debug → Fix, Performance + Paid, SEO + Performance
+- Quick Health Scan: 4 steps to get Lighthouse scores + on-page SEO tags in one pass
 
 ---
 
@@ -174,8 +184,8 @@ claude-skills/
     │   ├── SKILL.md                        # Main skill file
     │   └── references/                     # Research sources
     │       └── geo-sources.md
-    └── web-tool-selector/                  # Web automation tool selection
-        └── skill.md
+    └── web-tool-selector/                  # Web tool selection + page quality audits
+        └── SKILL.md
 ```
 
 **Note about `.claude/` directory:** This is a standard Claude Code configuration directory that stores project-specific settings. It's automatically created by Claude Code and should remain at the project root. It's similar to `.vscode/` or `.idea/` directories in other IDEs.
